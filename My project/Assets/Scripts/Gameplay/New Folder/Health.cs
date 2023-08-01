@@ -32,6 +32,12 @@ public class Health : MonoBehaviour
     {
         currentHp = maxHP;
     }
+
+    public void SetHp(float hp)
+    {
+        maxHP = hp;
+        currentHp = maxHP;
+    }
     
     void GetHit(float damage)
     {

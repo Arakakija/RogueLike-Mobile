@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 4301708883615133099}
   - component: {fileID: 4344254906740714347}
   - component: {fileID: 1175456474424128035}
-  - component: {fileID: 5484902230943309020}
   - component: {fileID: 5244161390814174756}
   - component: {fileID: 3170473113605332296}
   - component: {fileID: 5667330222475719889}
+  - component: {fileID: 810374561143255066}
+  - component: {fileID: 5028857996052193073}
+  - component: {fileID: 4264374167819544407}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -78,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4638fbb1fdf14479c88d30b39f7c5542, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -116,8 +118,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5484902230943309020
-CircleCollider2D:
+--- !u!114 &5244161390814174756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900128943956813555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37bff75c7689b49e48b1a04b451e3859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  _health: {fileID: 5667330222475719889}
+  _knockbackComponent: {fileID: 3170473113605332296}
+  _sprite: {fileID: 0}
+--- !u!114 &3170473113605332296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900128943956813555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b654a0aef984d848776151474db4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 3
+  invincibilityDuration: 0.1
+  isInvincible: 0
+--- !u!114 &5667330222475719889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900128943956813555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d59d943a150443bbb1d4e7c3b707f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHp: 100
+  maxHP: 40
+--- !u!61 &810374561143255066
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,10 +195,41 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00558424, y: -0.05956599}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.4, y: 0.4}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &5244161390814174756
+  m_Size: {x: 0.26969957, y: 0.280868}
+  m_EdgeRadius: 0
+--- !u!95 &5028857996052193073
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900128943956813555}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 893270810e8df497e925a81541c6f912, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4264374167819544407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,40 +238,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6900128943956813555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37bff75c7689b49e48b1a04b451e3859, type: 3}
+  m_Script: {fileID: 11500000, guid: fb98c9d76241c4356a26b1230b07a215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 3
-  _health: {fileID: 5667330222475719889}
-  _knockbackComponent: {fileID: 3170473113605332296}
-  damage: 10
---- !u!114 &3170473113605332296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900128943956813555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45b654a0aef984d848776151474db4a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockbackForce: 3
-  invincibilityDuration: 0.1
-  isInvincible: 0
---- !u!114 &5667330222475719889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900128943956813555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d59d943a150443bbb1d4e7c3b707f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHp: 100
-  maxHP: 40
+  _animator: {fileID: 5028857996052193073}

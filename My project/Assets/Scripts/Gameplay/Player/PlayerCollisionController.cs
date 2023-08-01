@@ -25,7 +25,7 @@ public class PlayerCollisionController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && !_knockbackComponent.isInvincible)
         {
-            float damage = other.gameObject.GetComponent<EnemyController>().damage;
+            float damage = other.gameObject.GetComponent<Enemy>().Data.Damage;
             PlayerController.Instance.Health.onHitEvent?.Invoke(damage);
             Vector2 direction = transform.position - other.transform.position; 
             _knockbackComponent.ApplyKnockback(direction);

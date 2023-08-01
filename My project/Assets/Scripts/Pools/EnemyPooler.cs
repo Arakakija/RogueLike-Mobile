@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyPooler : MonoBehaviour
@@ -32,9 +33,10 @@ public class EnemyPooler : MonoBehaviour
 
     private void SpawnObjectFromPool()
     {
-        GameObject obj = objectPool.GetObjectFromPool();
+        Enemy obj = objectPool.GetObjectFromPool().GetComponent<Enemy>();
         // Customize and position the spawned object as needed
         obj.transform.position = SpawnObjectAroundPlayer();
+        obj.SetData(GameManager.Instance.GetEnemyByIndex(0));
     }
 
     public void ReturnObjectToPool(GameObject obj)

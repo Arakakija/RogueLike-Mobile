@@ -23,8 +23,8 @@ public class Projectile : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
 
-        EnemyController enemyController = other.GetComponent<EnemyController>();
-        enemyController.Health.onHitEvent?.Invoke(dmg);
+        Enemy enemy = other.GetComponent<Enemy>();
+        enemy.Health.onHitEvent?.Invoke(dmg);
         GameManager.Instance.BulletPooler.ReturnObjectToPool(this.gameObject);
     }
 }

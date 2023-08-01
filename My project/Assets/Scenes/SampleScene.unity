@@ -545,6 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPooler: {fileID: 805202629}
   _bulletPool: {fileID: 1320018575}
+  levelData: {fileID: 11400000, guid: f74ba32b960b141159e7bf5c06ac45fe, type: 2}
 --- !u!4 &436583708
 Transform:
   m_ObjectHideFlags: 0

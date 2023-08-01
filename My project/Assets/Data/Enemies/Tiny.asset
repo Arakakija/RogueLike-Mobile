@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b4c443de3ba461aa0ac64e8fd0868f, type: 3}
+  m_Name: Tiny
+  m_EditorClassIdentifier: 
+  id: 1
+  enemyName: Tiny
+  hp: 30
+  damage: 10
+  speed: 3
+  sprite: {fileID: 21300000, guid: 4638fbb1fdf14479c88d30b39f7c5542, type: 3}
+  scale: 3
+  walkAnimation: {fileID: 7400000, guid: df70b6edb45ee469aa04bfe1278fedef, type: 2}
+  deadAnimation: {fileID: 7400000, guid: 1ddebfdf51f374c6ea6a39dbb29921d4, type: 2}
