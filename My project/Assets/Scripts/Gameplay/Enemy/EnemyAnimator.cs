@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+
+    public Animator animator => _animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class EnemyAnimator : MonoBehaviour
 
     public void PlayAnimationByTrigger(string animationTrigger)
     {
-        _animator.SetTrigger(animationTrigger);
+        _animator.SetTrigger("Death");
     }
 
 

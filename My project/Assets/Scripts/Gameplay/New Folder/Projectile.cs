@@ -21,9 +21,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.gameObject.CompareTag("Enemy")) return;
-
         Enemy enemy = other.GetComponent<Enemy>();
+        if (!other.gameObject.CompareTag("Enemy") || !enemy.IsAlive) return;
         enemy.Health.onHitEvent?.Invoke(dmg);
         GameManager.Instance.BulletPooler.ReturnObjectToPool(this.gameObject);
     }

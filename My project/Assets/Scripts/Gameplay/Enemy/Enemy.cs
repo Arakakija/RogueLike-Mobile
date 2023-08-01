@@ -14,9 +14,13 @@ public class Enemy : MonoBehaviour
 
     private EnemyAnimator _enemyAnimator;
 
+    private bool canMove = false;
+    private bool isAlive = false;
+
 
     public Health Health => _health;
     public EnemyData Data => data;
+    public bool IsAlive => isAlive;
 
     public void SetData(EnemyData data)
     {
@@ -26,6 +30,8 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         _health.onDead += Die;
+        canMove = true;
+        isAlive = true;
     }
 
     private void OnDisable()
@@ -47,7 +53,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = target.position - transform.position;
+        if(!canMove) return;
+        var position = transform.position;
+        Vector3 direction = target.position - position;
 
         // Normalize the direction vector to get a unit vector
         direction.Normalize();
@@ -56,11 +64,14 @@ public class Enemy : MonoBehaviour
         float movementAmount = data.Speed * Time.deltaTime;
 
         // Move the object towards the target
-        transform.position += direction * movementAmount;
+        position += direction * movementAmount;
+        transform.position = position;
     }
 
     void Die()
     {
+        canMove = false;
+        isAlive = false;
        _enemyAnimator.PlayAnimationByTrigger("Dead");
        StartCoroutine(WaitForAnimationToEnd());
     }
@@ -68,14 +79,8 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator WaitForAnimationToEnd()
     {
-        // Wait until the animation is no longer playing
-        while (_enemyAnimator.IsAnimationPlaying("Dead"))
-        {
-            Debug.Log("Entro");
-            yield return null;
-        }
-
-        // The animation has ended, execute additional code here
+        yield return new WaitForSeconds(1.75f);
+        
         GameManager.Instance.EnemyPooler.ReturnObjectToPool(this.gameObject);
     }
     

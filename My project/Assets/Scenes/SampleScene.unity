@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRadius: 17.5
-  interval: 1
+  interval: 20
 --- !u!1 &827037226
 GameObject:
   m_ObjectHideFlags: 3

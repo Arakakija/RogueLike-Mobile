@@ -7,6 +7,8 @@ public class PlayerAutoAim : MonoBehaviour
     private Transform referencePoint;
 
     private List<GameObject> Enemies;
+
+    [SerializeField] private float searchRadius = 5.0f;
     public GameObject currentTarget;
     
     // Start is called before the first frame update
@@ -23,24 +25,32 @@ public class PlayerAutoAim : MonoBehaviour
     }
     
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private GameObject FindNearestObject()
     {
-        GameObject nearestObject = null;
-        float nearestDistance = Mathf.Infinity;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(referencePoint.position, searchRadius);
 
-        foreach (GameObject obj in  Enemies = GameManager.Instance.EnemyPooler.Pool.objectPool)
+        float closestDistance = Mathf.Infinity;
+        Transform closestObject = null;
+
+        foreach (Collider2D collider in colliders)
         {
-            // Calculate the distance between the reference point and the object
-            float distance = Vector3.Distance(referencePoint.position, obj.transform.position);
-
-            // If the current distance is smaller than the previous nearest distance, update the nearest object and distance
-            if (distance < nearestDistance)
+            var enemy = collider.gameObject.GetComponent<Enemy>();
+            // Check if the collider belongs to a game object that you want to consider (e.g., by tag or layer)
+            if (enemy && enemy.IsAlive)
             {
-                nearestObject = obj;
-                nearestDistance = distance;
+                Transform objectTransform = collider.transform;
+                float distanceToTarget = Vector2.Distance(referencePoint.position, objectTransform.position);
+
+                // Check if the current object is closer than the previously closest one
+                if (distanceToTarget < closestDistance)
+                {
+                    closestDistance = distanceToTarget;
+                    closestObject = objectTransform;
+                }
             }
         }
 
-        return nearestObject;
+        return closestObject == null ? null : closestObject.gameObject;
     }
 }
